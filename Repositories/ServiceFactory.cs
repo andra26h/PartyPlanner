@@ -1,12 +1,7 @@
-﻿using PartyPlanner.Data;
-using PartyPlanner.Models;
-using PartyPlanner.Repositories.Implementations;
+﻿// Repositories/ServiceFactory.cs
+using PartyPlanner.Data;
 using PartyPlanner.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PartyPlanner.Repositories.Implementations;
 
 namespace PartyPlanner.Repositories
 {
@@ -14,16 +9,14 @@ namespace PartyPlanner.Repositories
     {
         private readonly PartyPlannerContext _context;
 
-        public ServiceFactory()
+        public ServiceFactory(PartyPlannerContext context)
         {
-            // Crearea unei instanțe a PartyPlannerContext
-            _context = new PartyPlannerContext();
+            _context = context;
         }
 
-        // Fabrica pentru crearea repository-urilor generice
-        public IRepository<T> CreateRepository<T>() where T : BaseEntity
-        {
-            return new GenericRepository<T>(_context);
-        }
+        public IGuestRepository CreateGuestRepository() => new GuestRepository(_context);
+        public IEventRepository CreateEventRepository() => new EventRepository(_context);
+        public IPlanningTaskRepository CreatePlanningTaskRepository() => new PlanningTaskRepository(_context);
+        public ISupplierRepository CreateSupplierRepository() => new SupplierRepository(_context);
     }
 }

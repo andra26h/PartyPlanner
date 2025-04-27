@@ -1,4 +1,5 @@
-﻿//using PartyPlanner.Data;
+﻿
+//using PartyPlanner.Data;
 //using PartyPlanner.Models;
 //using PartyPlanner.Repositories;
 //using PartyPlanner.Repositories.Interfaces;
@@ -458,7 +459,7 @@ class Program
 {
     static void Main()
     {
-        var factory = new ServiceFactory();
+        var factory = new RepositoryFactory();
 
         var guestRepo = factory.CreateRepository<Guest>();
         var supplierRepo = factory.CreateRepository<Supplier>();
@@ -502,7 +503,6 @@ class Program
         }
     }
 
-    // Metoda care este acum generica pentru toate entitățile
     static void EntityMenu<T>(IRepository<T> repository, string entityName) where T : BaseEntity, new()
     {
         while (true)
@@ -543,7 +543,6 @@ class Program
         }
     }
 
-    // Metoda generica de afisare a tuturor entităților
     static void ShowAllEntities<T>(IRepository<T> repository) where T : BaseEntity
     {
         Console.Clear();
@@ -673,7 +672,6 @@ class Program
         return null;
     }
 
-    // Metoda pentru formatarea afișării datelor
     static string itemToString<T>(T item) where T : BaseEntity
     {
         if (item is Guest g)
