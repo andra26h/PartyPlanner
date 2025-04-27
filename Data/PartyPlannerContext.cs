@@ -16,9 +16,25 @@ namespace PartyPlanner.Data
         public DbSet<PlanningTask> Tasks { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
+        public PartyPlannerContext()
+        {
+        }
+
+        public PartyPlannerContext(DbContextOptions options) : base(options)
+        {
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-VV03FU7\SQLEXPRESSA;Database=PartyPlannerDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            // Condiționează configurarea în funcție de mediu
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            {
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-VV03FU7\SQLEXPRESSA;Database=PartyPlannerDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            }
+            else
+            {
+                optionsBuilder.UseInMemoryDatabase("PartyPlannerInMemoryDb");
+            }
         }
     }
+
 }
