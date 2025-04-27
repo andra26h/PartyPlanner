@@ -1,3 +1,4 @@
+Branchul cu varianta finala e master
 # 🥳 Party Planner – Aplicație Console C# cu SQL Server
 
 ## 📌 Descriere generală
