@@ -1,4 +1,5 @@
 Branchul cu varianta finala e master
+Pentru unit tests am creat un repository separat, deoarece nu am reusit s ail includ in acesta.
 # 🥳 Party Planner – Aplicație Console C# cu SQL Server
 
 ## 📌 Descriere generală
